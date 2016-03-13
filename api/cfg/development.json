@@ -1,0 +1,123 @@
+{
+  "mongodb": "mongodb://localhost:27017/jewukraine",
+  "http": {
+    "port": 8081
+  },
+  "url": "http://localhost:8081",
+  "modules": [
+    "posts",
+    "uploads",
+    "users",
+    "notifications"
+  ],
+  "auth": {
+    "tokenSecret": "secret",
+    "maxTokensCount": 5,
+    "tokenDuration": 1800000,
+    "persistTokenDuration": 2592000000,
+    "guestRoleName": "guest"
+  },
+  "seo": {
+    "text-ru": {
+      "userkey": "76ae6c2a1d8dfe1a7404535066c99d69"
+    }
+  },
+  "dns": {
+    "ip": "localhost",
+    "port": 15353,
+    "default-ttl": 3600,
+    "enable-tcp": true,
+    "enable-v6": true,
+    "nameservers": {
+      "ns1.5stars.link": ["46.4.48.144"],
+      "ns2.5stars.link": ["46.4.48.144"],
+      "ns3.5stars.link": ["46.4.48.144"]
+    },
+    "default-ip": ["46.4.48.144"],
+    "version": "Paphos CMS"
+  },
+  "notifications": {
+    "mailingDelay": 30
+  },
+  "urls": {
+    "support": "https://support.dev.cannasos.com"
+  },
+  "mail": {
+    "noReply": "RegSpy <support@5starsmedia.com.ua>",
+    "transport": {
+      "service": "5starsmedia.com.ua",
+      "host": "smtp.yandex.ua",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "support@5starsmedia.com.ua",
+        "pass": "gfhjkm666"
+      },
+      "debug": false
+    },
+    "imagesPath": "https://5starsmedia.com.ua/static/mail"
+  },
+  "twitter": {
+    "consumerKey": "",
+    "consumerSecret": ""
+  },
+  "facebook": {
+    "clientId": "",
+    "clientSecret": ""
+  },
+  "statd": {
+    "host": "localhost",
+    "port": "8125"
+  },
+  "tasks": {
+    "enabled": true,
+    "stomp": {
+      "destination": "/queue/tasks",
+      "host": "localhost",
+      "port": 61613,
+      "login": "root",
+      "password": "123456"
+    }
+  },
+  "states": {
+    "enabled": true,
+    "stomp": {
+      "destination": "/queue/states",
+      "host": "localhost",
+      "port": 61613,
+      "login": "root",
+      "password": "123456"
+    }
+  },
+  "broadcast": {
+    "enabled": true,
+    "stomp": {
+      "destination": "/topic/broadcast",
+      "host": "localhost",
+      "port": 61613,
+      "login": "root",
+      "password": "123456"
+    }
+  },
+  "log": {
+    "stdout": {
+      "level": "debug",
+      "enabled": true
+    },
+    "syslog": {
+      "enabled": false
+    },
+    "file": {
+      "level": "info",
+      "path": "tintin.com.log",
+      "enabled": true
+    },
+    "mongodb": {
+      "level": "info",
+      "enabled": true
+    }
+  },
+  "sms": {
+
+  }
+}

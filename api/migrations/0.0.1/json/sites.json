@@ -1,0 +1,9 @@
+[
+  {
+    "domain": "localhost",
+    "port": 8081,
+    "allowLocales": [
+      {"code": "en_GB", "title": "English"}
+    ]
+  }
+]

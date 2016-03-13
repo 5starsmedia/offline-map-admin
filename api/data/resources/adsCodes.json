@@ -1,0 +1,19 @@
+{
+  "resource": "adsCodes",
+  "model": "AdsCode",
+  "options": {},
+  "acl": {
+    "*": {
+      "get": "*",
+      "get?activated": ["ads"],
+      "get?_id": "*",
+      "get?tags": "*",
+      "get?tags.title": "*",
+      "get?category._id": "*",
+      "put?_id": ["ads", "*:owner"],
+      "put?_id&position": ["ads", "*:owner"],
+      "post": "ads",
+      "delete?_id": "ads"
+    }
+  }
+}

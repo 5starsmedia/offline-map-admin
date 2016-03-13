@@ -1,0 +1,53 @@
+export default
+class NewsPostsCtrl {
+  /*@ngInject*/
+  constructor($scope, $location, $q, NewsPostModel, BaseAPIParams, NgTableParams, NewsCategoryModel, postType) {
+
+    $scope.postType = postType;
+
+    NewsCategoryModel.getTree({ postType: postType, page: 1, perPage: 100 }, (data) => {
+      $scope.category = data;
+    });
+
+    $scope.tableParams = new NgTableParams(angular.extend({
+      page: 1,
+      count: 10,
+      sorting: {
+        createDate: 'desc'
+      }
+    }, $location.search()), {
+      filterDelay: 0,
+      groupBy: function(item) {
+        return item.getDate();
+      },
+      getData: function ($defer, params) {
+        $location.search(params.url());
+
+        var arr = BaseAPIParams({
+          status: [1,2,4,6],
+          postType: postType,
+          fields: 'title,likesCount,viewsCount,status,createDate,account,seo,createdBy,publishedDate,category,icon'
+        }, params);
+
+        arr.sort.unshift('status');
+
+        $scope.loading = true;
+        NewsPostModel.query(arr, function (logs, headers) {
+          $scope.loading = false;
+          $scope.logs = logs;
+          $defer.resolve(logs);
+          params.total(headers('x-total-count'));
+        });
+      }
+    });
+
+    $scope.remove = function(item) {
+      $scope.loading = true;
+      item.$delete(function() {
+        $scope.loading = false;
+
+        $scope.tableParams.reload();
+      })
+    };
+  }
+}

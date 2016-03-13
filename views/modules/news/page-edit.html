@@ -1,0 +1,182 @@
+<div>
+
+
+  <st-form model="post" state="error" submit="saveItem(post)"
+           auto-save="saveItemPartial(post)"
+           auto-save-mode="interval"
+           auto-save-interval="30000">
+
+    <st-header title="{{post._id ? 'Редактирование страницы' : 'Новая страница'}}">
+
+      <button ng-disabled="loading" ng-class="{'m-progress': loading}" class="btn btn-primary btn-outline"
+              type="submit">
+        {{'Save'|translate}}
+      </button>
+      <a ui-sref="{{postType}}.posts" class="btn btn-default">
+        {{'Cancel'|translate}}
+      </a>
+
+    </st-header>
+
+    <div class="content" animate-panel effect="zoomIn">
+
+      <div class="row">
+        <div class="col-lg-9">
+
+
+          <st-panel title="{{'Основная информация'|translate}}">
+
+              <div class="panel-body">
+                <st-form-element label="{{'Title'|translate}}" field="title">
+
+                  <input id="title" bz-localizable="post.title" class="form-control input-lg" name="title" type="text" required
+                         ng-model="post.translates.title[current.language]"/>
+
+                </st-form-element>
+
+
+                <st-form-element label="{{'Тип страницы'|translate}}" field="pageType">
+
+                  <div class="radio">
+                  <label>
+                    <input icheck type="radio" ng-model="post.pageType" value="page" />
+
+                    Информационная страница
+                  </label>
+                  <label>
+                    <input icheck type="radio" ng-model="post.pageType" value="place" />
+
+                    Место
+                  </label>
+                  </div>
+
+                </st-form-element>
+
+
+                <st-form-element label="{{'Иконка'|translate}}" field="icon">
+
+                  <div class="radio">
+                  <label>
+                    <input icheck type="radio" ng-model="post.icon" value="grave" />
+
+                    <span class="all-icons grave"></span> Могила
+                  </label>
+                  <label>
+                    <input icheck type="radio" ng-model="post.icon" value="money" />
+
+                    <span class="all-icons money"></span> Деньги
+                  </label>
+                  <label>
+                    <input icheck type="radio" ng-model="post.icon" value="question" />
+
+                    <span class="all-icons question"></span> Вопрос
+                  </label>
+                  <label>
+                    <input icheck type="radio" ng-model="post.icon" value="synagogues" />
+
+                    <span class="all-icons synagogues"></span> Синагога
+                  </label>
+                  <label>
+                    <input icheck type="radio" ng-model="post.icon" value="ukraine" />
+
+                    <span class="all-icons ukraine"></span> Украина
+                  </label>
+                  <label>
+                    <input icheck type="radio" ng-model="post.icon" value="weather" />
+
+                    <span class="all-icons weather"></span> Погода
+                  </label>
+                  </div>
+
+                </st-form-element>
+
+                <st-form-element label="{{'Category'|translate}}" field="category._id">
+
+                  <select ng-model="post.category._id" st-tree-select="categories" class="form-control" name="category"
+                          required></select>
+
+                </st-form-element>
+
+
+                <div ng-show="post.pageType == 'place'">
+
+                  <st-form-element label="Адрес" field="address">
+
+                    <input bz-localizable="post.address" ng-keydown="onKeyDown(post.address, $event)" class="form-control" name="address" type="text"
+                           ng-model="post.translates.address[current.language]"/>
+
+                  </st-form-element>
+
+                  <ui-gmap-google-map ng-if="post.pageType == 'place'" bounds="map.bounds" events="map.events" control="control" center='map.center' zoom='map.zoom'>
+                    <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+                  </ui-gmap-google-map>
+
+                </div>
+
+              </div>
+
+              </st-panel>
+
+
+          <div class="panel panel-default" ng-repeat="section in post.sections">
+            <div class="panel-heading">
+              <a href="" class="btn btn-danger pull-right btn-xs"
+                 st-confirm="deleteSection(section)" title="'Удаление секции'"
+                 message-title="'Удаление'" message="'Вы действительно хотите удалить эту секцию?'">
+                <span class="fa fa-trash"></span>
+                Удалить секцию
+              </a>
+
+              {{section.title|default:'No title'}}
+            </div>
+            <div class="panel-body">
+
+              <st-form-element label="Заголовок секции" field="title">
+
+                <input bz-localizable="section.title" class="form-control input-lg" name="title" type="text"
+                       ng-model="section.translates.title[current.language]"/>
+
+              </st-form-element>
+
+
+              <st-form-element label="{{'Body'|translate}}" field="body">
+
+                <textarea bz-localizable="section.body" id="body" class="form-control" name="body" ckeditor="editorOptions"
+                          ng-model="section.translates.body[current.language]"></textarea>
+
+              </st-form-element>
+            </div>
+          </div>
+
+          <a href="" class="btn btn-success" ng-click="post.sections.push({})">
+            <span class="fa fa-plus"></span>
+            Добавить информационную секцию
+          </a>
+
+        </div>
+        <div class="col-lg-3">
+
+
+          <st-panel title="{{'Attached images'|translate}}">
+
+            <div editor-select-images="post.files">
+
+              <div class="alert alert-info">
+                Загрузите сюда изображения, которые будут использоваться на странице
+              </div>
+
+                <cs-file-upload resource-id="{{post._id}}" collection-name="posts" files="post.files"
+                                cover-file="post.coverFile" has-cover-select="true">
+                </cs-file-upload>
+
+            </div>
+          </st-panel>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </st-form>
+</div>

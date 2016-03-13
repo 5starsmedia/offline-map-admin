@@ -1,0 +1,78 @@
+<div>
+
+    <st-form model="item" state="error" submit="saveItem(item)">
+    <h2 class="font-light m-b-xs">
+        {{'Edit'|translate}}
+    </h2>
+
+
+    <div class="hpanel" bz-loading-container="loading">
+        <div class="panel-body no-bottom-border">
+
+            <st-form-element label="{{'Title'|translate}}" field="title">
+
+                <input id="title" class="form-control input-lg" name="title" type="text" required
+                       ng-model="item.title"/>
+
+            </st-form-element>
+
+
+            <st-form-element label="{{'Иконка'|translate}}" field="icon">
+
+                <div class="radio">
+                    <label>
+                        <input icheck type="radio" ng-model="item.icon" value="grave" />
+
+                        <span class="all-icons grave"></span> Могила
+                    </label>
+                    <label>
+                        <input icheck type="radio" ng-model="item.icon" value="money" />
+
+                        <span class="all-icons money"></span> Деньги
+                    </label>
+                    <label>
+                        <input icheck type="radio" ng-model="item.icon" value="question" />
+
+                        <span class="all-icons question"></span> Вопрос
+                    </label>
+                    <label>
+                        <input icheck type="radio" ng-model="item.icon" value="synagogues" />
+
+                        <span class="all-icons synagogues"></span> Синагога
+                    </label>
+                    <label>
+                        <input icheck type="radio" ng-model="item.icon" value="ukraine" />
+
+                        <span class="all-icons ukraine"></span> Украина
+                    </label>
+                    <label>
+                        <input icheck type="radio" ng-model="item.icon" value="weather" />
+
+                        <span class="all-icons weather"></span> Погода
+                    </label>
+                </div>
+
+            </st-form-element>
+        </div>
+
+        <div class="panel-footer">
+
+            <a href="" class="btn btn-danger btn-outline pull-right" st-confirm="remove(child)"
+               message-title="'Удаление...'"
+               message="'Вы действительно хотите удалить?'">
+                {{'Delete'| translate}}
+            </a>
+
+            <button class="btn btn-primary" type="submit">
+                {{'Save'| translate}}
+            </button>
+
+            <a href="" class="btn btn-default" ng-click="cancel()">
+                {{'Cancel'| translate}}
+            </a>
+
+        </div>
+    </div>
+
+    </st-form>
+</div>

@@ -1,0 +1,52 @@
+{
+  "resource": "products",
+  "model": "product",
+  "options": {
+    "db.safe": 2,
+    "searchFields": [
+      {
+        "role": "admin",
+        "value": [
+          "title", "code"
+        ]
+      },
+      {
+        "role": "*",
+        "value": [
+          "title", "code"
+        ]
+      }
+    ],
+    "maxPerPage": [
+      {
+        "role": "*:owner",
+        "value": 300
+      },
+      {
+        "role": "admin",
+        "value": 200
+      },
+      {
+        "role": "*",
+        "value": 100
+      }
+    ]
+  },
+  "acl": {
+    "*": {
+      "get?isVariation": "*",
+      "get": ["admin", "*:owner", "user"],
+      "get?activated": ["admin"],
+      "get?variationProduct._id": "*",
+      "get?category._id": "*",
+      "get?category._id&isVariation": "*",
+      "get?_id": "*",
+      "put?_id": ["admin", "*:owner"],
+      "post": "admin",
+      "delete?_id": "admin"
+    },
+    "isVariation": false,
+    "withVariations": false,
+    "site": false
+  }
+}

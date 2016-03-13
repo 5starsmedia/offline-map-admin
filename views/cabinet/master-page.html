@@ -1,0 +1,39 @@
+<div class="main">
+    <div class="container-main">
+
+        <div class="wrapper">
+            <div class="ng-cloak">
+                <div class="main-left clearfix">
+                    <div class="heading-bar visible-lg visible-md hidden-sm hidden-xs">
+                        <a class="btn" ui-sref="page.posts" ui-sref-active="active btn-default">
+                            Страницы
+                        </a>
+                        <a class="btn" ui-sref="page.categories" ui-sref-active="active btn-default">
+                            Категории
+                        </a>
+
+                        <a class="btn pull-right" ui-sref="auth.logout">{{'Logout'|translate}}</a>
+                    </div>
+
+                    <div ui-view animate-panel></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid ng-cloak">
+    <hr>
+
+    <footer class="row">
+        <div class="col-sm-12 text-right">
+
+            <p>
+            <small>
+                {{globalCtrl.quote[0]}}<br/>
+                <strong>{{globalCtrl.quote[1]}}</strong>
+            </small>
+            </p>
+
+        </div>
+    </footer>
+</div>
