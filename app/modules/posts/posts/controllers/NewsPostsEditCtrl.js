@@ -10,6 +10,7 @@ class NewsPostsEditCtrl {
 
     post.sections = post.sections || [];
     var oldStatus = post.status;
+    post.location = post.location || {};
     $scope.post = post;
 
     NewsCategoryModel.getTree({ postType: postType, page: 1, perPage: 100 }, (data) => {
