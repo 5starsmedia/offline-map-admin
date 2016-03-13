@@ -105,7 +105,7 @@ gulp.task('build-persistent', [], function () {
 
 gulp.task('replace-base', ['usemin'], function(){
   gulp.src(config.outputDir + 'index.html')
-    .pipe(replace('<base href="/', '<base href="/cabinet/'))
+    .pipe(replace('<base href="/', '<base href="/'))
     .pipe(gulp.dest(config.outputDir));
 });
 
