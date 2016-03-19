@@ -1,0 +1,115 @@
+'use strict';
+
+var express = require('express'),
+    moment = require('moment'),
+    _ = require('lodash'),
+    async = require('async'),
+    tmp = require('tmp'),
+    fs = require('fs'),
+    fstream = require('fstream'),
+    tar = require('tar'),
+    zlib = require('zlib'),
+    path = require('path'),
+    mongoose = require('mongoose'),
+    Grid = require('gridfs-stream'),
+    cheerio = require('cheerio'),
+    util = require('util'),
+    router = express.Router();
+
+router.get('/', function (req, res, next) {
+    async.auto({
+        'categories': function (next) {
+            var params = { 'site._id': req.site._id, removed: {$exists: false}, path: { $ne: '' } };
+
+            req.app.models.categories.find(params, next)
+        }
+    }, function (err, data) {
+        if (err) { return next(err); }
+
+        var result = [];
+
+        async.eachLimit(data.categories, 1, function(category, next) {
+            var item = {
+                type: 'list',
+                icon: category.icon,
+                title: category.title,
+                alias: 'id-' + category._id
+            };
+            if (category.title == 'Обзор') {
+                item.alias = 'browse';
+            }
+            if (category.title == 'Места') {
+                item.alias = 'places';
+            }
+            if (category.title == 'Синагоги') {
+                item.alias = 'synagogues';
+            }
+            if (category.title == 'Общины') {
+                item.alias = 'community';
+            }
+            if (category.title == 'Жилье') {
+                item.alias = 'hostels';
+            }
+            if (category.title == 'Еда') {
+                item.alias = 'food';
+            }
+            if (category.title == 'Справка') {
+                item.alias = 'help';
+            }
+            if (category.title == 'Туризм') {
+                item.alias = 'world';
+            }
+
+
+            var params = {'category._id': category._id, removed: {$exists: false}, status: 4};
+            req.app.models.posts.find(params, function(err, data) {
+                if (err) { return next(err); }
+
+                var ids = [];
+                _.each(data, function(page) {
+                    ids.push(page._id);
+
+                    var pageItem = {
+                        id: page._id,
+                        alias: 'id-' + page._id,
+                        title: page.title,
+                        icon: page.icon,
+                        type: 'page',
+                        content: []
+                    };
+                    
+                    if (page.pageType == 'place') {
+                        if (page.location.lat) {
+                            pageItem.coordinates = [page.location.lat, page.location.lng];
+                        }
+                        pageItem.content.push({
+                            type: "card-showcase",
+                            html: '<strong>Адрес</strong>: ' + page.address
+                        });
+                    }
+
+                    _.each(page.sections, function(section) {
+                        var sectionItem =  {
+                            type: 'card',
+                            title: section.title,
+                            html: section.body
+                        };
+                        pageItem.content.push(sectionItem);
+                    });
+
+                    result.push(pageItem);
+                });
+                item.items = ids;
+
+                result.push(item);
+
+                next();
+            });
+        }, function() {
+            res.json(result);
+        });
+    });
+
+});
+
+module.exports = router;

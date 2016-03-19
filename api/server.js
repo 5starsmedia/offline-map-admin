@@ -192,11 +192,11 @@ app.server.use(sites());
 var corsOptionsDelegate = function(req, callback){
   var site = req.site;
   var corsOptions = { origin: false };
-  if(site && site.isCorsEnabled && req.url.search(/^\/api\/webdav/) < 0){
+  //if(site && site.isCorsEnabled && req.url.search(/^\/api\/webdav/) < 0){
     corsOptions.origin = true;
     corsOptions.credentials = true;
     corsOptions.exposedHeaders = ['x-total-count'];
-  }
+  //}
   callback(null, corsOptions);
 };
 app.server.use(cors(corsOptionsDelegate));
