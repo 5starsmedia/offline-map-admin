@@ -35,6 +35,9 @@ var addPostForCategory = function(app, category, item, result, next) {
                 content: []
             };
 
+            if (page.coverFile && page.coverFile._id) {
+                pageItem.image = 'http://jew.5stars.link/api/files/' + page.coverFile._id;
+            }
             if (page.pageType == 'place') {
                 if (page.location.lat) {
                     pageItem.coordinates = [page.location.lat, page.location.lng];
