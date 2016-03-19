@@ -49,7 +49,7 @@ var addPostForCategory = function(app, category, item, result, next) {
                 var sectionItem =  {
                     type: 'card',
                     title: section.title,
-                    html: section.body
+                    html: section.body.replace('src="/api', 'src="http://jew.5stars.link/api')
                 };
                 pageItem.content.push(sectionItem);
             });
