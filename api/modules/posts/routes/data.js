@@ -17,7 +17,7 @@ var express = require('express'),
     router = express.Router();
 
 
-var addPostForCategory = function(app, category, result, next) {
+var addPostForCategory = function(app, category, item, result, next) {
     var params = {'category._id': category._id, removed: {$exists: false}, status: 4};
     app.models.posts.find(params, function(err, data) {
         if (err) { return next(err); }
@@ -113,7 +113,7 @@ router.get('/', function (req, res, next) {
             categoryIds[category.parentId] = categoryIds[category.parentId] || [];
             categoryIds[category.parentId].push(category._id);
 
-            addPostForCategory(req.app, category, result, next);
+            addPostForCategory(req.app, category, item, result, next);
         }, function() {
 
             result = _.map(result, function(item) {
