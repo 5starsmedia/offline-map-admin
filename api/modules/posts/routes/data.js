@@ -82,7 +82,7 @@ router.get('/', function (req, res, next) {
                 type: 'list',
                 icon: category.icon,
                 title: category.title,
-                alias: 'id-' + category._id
+                alias: 'id-' + category._id,
                 id: category._id
             };
             if (category.title == 'Обзор') {
