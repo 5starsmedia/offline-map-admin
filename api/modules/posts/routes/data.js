@@ -30,6 +30,7 @@ var addPostForCategory = function(app, category, item, result, next) {
                 id: page._id,
                 alias: 'id-' + page._id,
                 title: page.title,
+                description: page.teaser,
                 icon: page.icon,
                 type: 'page',
                 content: []

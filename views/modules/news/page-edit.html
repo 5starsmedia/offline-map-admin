@@ -33,6 +33,12 @@
                          ng-model="post.translates.title[current.language]"/>
 
                 </st-form-element>
+                <st-form-element label="{{'Title'|translate}}" field="teaser">
+
+                  <input id="title" bz-localizable="post.teaser" class="form-control" name="teaser" type="text"
+                         ng-model="post.translates.teaser[current.language]"/>
+
+                </st-form-element>
 
 
                 <st-form-element label="{{'Тип страницы'|translate}}" field="pageType">

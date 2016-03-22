@@ -21,6 +21,12 @@ var schema = new mongoose.Schema({
       uk: String,
       en: String,
       je: String
+    },
+    teaser: {
+      ru: String,
+      uk: String,
+      en: String,
+      je: String
     }
   },
 
