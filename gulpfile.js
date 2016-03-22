@@ -26,7 +26,6 @@ var gulp = require('gulp'),
   extractTranslate = require('gulp-angular-translate-extractor'),
   url = require('url'),
   fs = require('fs'),
-  git = require('git-rev'),
   urlRewrite = function (rootDir, indexFile) {
     indexFile = indexFile || "index.html";
     return function (req, res, next) {
@@ -67,12 +66,6 @@ var config = {
   views: './views/**/*.html'
 }, version = '';
 
-git.short(function (short) {
-  git.branch(function (branch) {
-    version = branch + '@' + short;
-  });
-});
-
 // clean the output directory
 gulp.task('clean', function (cb) {
   rimraf(config.outputDir, cb);
@@ -106,12 +99,6 @@ gulp.task('build-persistent', [], function () {
 gulp.task('replace-base', ['usemin'], function(){
   gulp.src(config.outputDir + 'index.html')
     .pipe(replace('<base href="/', '<base href="/'))
-    .pipe(gulp.dest(config.outputDir));
-});
-
-gulp.task('replace-version', ['build-persistent'], function(){
-  gulp.src(config.outputDir + 'app.js')
-    .pipe(replace('VERSION-dev', version))
     .pipe(gulp.dest(config.outputDir));
 });
 
@@ -178,7 +165,7 @@ gulp.task('concat', ['build-persistent', 'compileTemplates'], function() {
     .pipe(gulp.dest(config.outputDir));
 });
 
-gulp.task('usemin', ['build-persistent', 'replace-version', 'concat'], function () {
+gulp.task('usemin', ['build-persistent', 'concat'], function () {
   return gulp.src('./*.html')
     .pipe(usemin({
       vendorscss: [minifyCss(), 'concat'],
