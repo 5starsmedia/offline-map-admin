@@ -59,9 +59,11 @@ var addPostForCategory = function(app, category, item, result, next) {
                 pageItem.content.push(sectionItem);
             });
 
-            result.push(pageItem);
+            if (!_.find(result, { id: pageItem.id })) {
+                result.push(pageItem);
+            }
         });
-        item.items = _.uniq(ids);
+        item.items = ids;
 
         result.push(item);
 
@@ -126,10 +128,6 @@ router.get('/', function (req, res, next) {
                     item.items = categoryIds[item.id];
                 }
                 return item;
-            });
-
-            result = _.uniq(result, function(item) {
-                return item.id;
             });
             res.json(result);
         });
