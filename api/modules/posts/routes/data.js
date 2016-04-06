@@ -61,7 +61,7 @@ var addPostForCategory = function(app, category, item, result, next) {
 
             result.push(pageItem);
         });
-        item.items = ids;
+        item.items = _.uniq(ids);
 
         result.push(item);
 
