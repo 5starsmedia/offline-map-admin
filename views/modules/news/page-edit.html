@@ -103,6 +103,13 @@
 
                 </st-form-element>
 
+                <st-form-element label="{{'Регион'|translate}}" field="category2._id">
+
+                  <select ng-model="post.category2._id" st-tree-select="categories" class="form-control" name="category2"
+                          required></select>
+
+                </st-form-element>
+
 
                 <div ng-show="post.pageType == 'place'">
 
@@ -110,6 +117,12 @@
 
                     <input bz-localizable="post.address" ng-keydown="onKeyDown(post.address, $event)" class="form-control" name="address" type="text"
                            ng-model="post.translates.address[current.language]"/>
+
+                  </st-form-element>
+
+                  <st-form-element label="Телефон" field="phone">
+
+                    <input class="form-control" name="phone" type="text" ng-model="post.phone"/>
 
                   </st-form-element>
 

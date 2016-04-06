@@ -58,6 +58,7 @@ var schema = new mongoose.Schema({
 
   published: Boolean,
 
+  phone: String,
   source: String,
   photoSource: String,
 
@@ -161,6 +162,12 @@ var schema = new mongoose.Schema({
   }],
 
   category: {
+    _id: mongoose.Schema.Types.ObjectId,
+    title: String,
+    alias: String,
+    parentAlias: String
+  },
+  category2: {
     _id: mongoose.Schema.Types.ObjectId,
     title: String,
     alias: String,

@@ -18,7 +18,7 @@ var express = require('express'),
 
 
 var addPostForCategory = function(app, category, item, result, next) {
-    var params = {'category._id': category._id, removed: {$exists: false}, status: 4};
+    var params = { $or: [ {'category._id': category._id}, {'category2._id': category._id} ], removed: {$exists: false}, status: 4};
     app.models.posts.find(params, function(err, data) {
         if (err) { return next(err); }
 
@@ -30,6 +30,7 @@ var addPostForCategory = function(app, category, item, result, next) {
                 id: page._id,
                 alias: 'id-' + page._id,
                 title: page.title,
+                phone: page.phone,
                 description: page.teaser,
                 icon: page.icon,
                 type: 'page',
