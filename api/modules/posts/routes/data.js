@@ -128,7 +128,9 @@ router.get('/', function (req, res, next) {
                 return item;
             });
 
-            result = _.uniq(result, 'id');
+            result = _.uniq(result, function(item) {
+                return item.id;
+            });
             res.json(result);
         });
     });
