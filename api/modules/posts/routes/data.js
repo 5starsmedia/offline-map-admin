@@ -62,8 +62,11 @@ var addPostForCategory = function(app, category, item, result, next) {
             result.push(pageItem);
         });
         item.items = _.uniq(ids);
-
+if (item.id == '56efeca646e329960139cd95') {
+    console.info(item);
+}
         result.push(item);
+        result = _.uniq(result, 'id');
 
         next();
     });
