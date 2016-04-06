@@ -62,11 +62,8 @@ var addPostForCategory = function(app, category, item, result, next) {
             result.push(pageItem);
         });
         item.items = _.uniq(ids);
-if (item.id == '56efe99146e329960139cca5') {
-    console.info(item);
-}
+
         result.push(item);
-        result = _.uniq(result, 'id');
 
         next();
     });
@@ -131,6 +128,7 @@ router.get('/', function (req, res, next) {
                 return item;
             });
 
+            result = _.uniq(result, 'id');
             res.json(result);
         });
     });
