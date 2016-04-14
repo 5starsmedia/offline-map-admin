@@ -126,6 +126,12 @@
 
                   </st-form-element>
 
+                  <st-form-element label="Сайт" field="website">
+
+                    <input class="form-control" name="website" type="text" ng-model="post.website"/>
+
+                  </st-form-element>
+
                   <ui-gmap-google-map ng-if="post.pageType == 'place'" bounds="map.bounds" events="map.events" control="control" center='map.center' zoom='map.zoom'>
                     <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
                   </ui-gmap-google-map>

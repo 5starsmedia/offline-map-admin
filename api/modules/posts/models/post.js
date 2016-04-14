@@ -38,6 +38,7 @@ var schema = new mongoose.Schema({
 
   pageType: String,
   address: String,
+  website: String,
   icon: String,
   // тип публікації
   postType: {type: String, default: 'news', enum: ['news', 'post', 'page', 'announce']},
