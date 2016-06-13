@@ -1,7 +1,11 @@
 <div>
 
     <st-form model="item" state="error" submit="saveItem(item)">
-    <h2 class="font-light m-b-xs">
+
+        <select style="width: 200px;" ng-model="current.language" class="form-control pull-right"
+                ng-options="language.alias as language.title for language in languages"></select>
+
+        <h2 class="font-light m-b-xs">
         {{'Edit'|translate}}
     </h2>
 
