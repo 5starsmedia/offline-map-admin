@@ -12,18 +12,21 @@ var schema = new mongoose.Schema({
   translates: {
     title: {
       ru: String,
+      fr: String,
       uk: String,
       en: String,
       je: String
     },
     address: {
       ru: String,
+      fr: String,
       uk: String,
       en: String,
       je: String
     },
     teaser: {
       ru: String,
+      fr: String,
       uk: String,
       en: String,
       je: String

@@ -77,7 +77,8 @@ angular.module(appName, [
     };
     $rootScope.languages = [
       {alias: 'ru',title: 'Русский'},
-      {alias: 'uk',title: 'Українська'},
+      //{alias: 'uk',title: 'Українська'},
+      {alias: 'fr',title: 'Français'},
       {alias: 'en',title: 'English'},
       {alias: 'je',title: 'Иврит'}
     ];

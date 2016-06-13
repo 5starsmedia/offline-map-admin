@@ -35,7 +35,8 @@ var addPostForCategory = function(app, category, item, result, next) {
                 description: page.teaser,
                 icon: page.icon,
                 type: 'page',
-                content: []
+                content: [],
+                translates: page.translates
             };
 
             if (page.coverFile && page.coverFile._id) {
@@ -149,7 +150,8 @@ router.get('/', function (req, res, next) {
                 icon: category.icon,
                 title: category.title,
                 alias: 'id-' + category._id,
-                id: category._id
+                id: category._id,
+                translates: category.translates
             };
             if (category.title == 'Обзор') {
                 item.alias = 'browse';

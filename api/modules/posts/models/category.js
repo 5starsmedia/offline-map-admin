@@ -14,6 +14,16 @@ var schema = new mongoose.Schema({
   parentAlias: String,
   description: String,
 
+  translates: {
+    title: {
+      ru: String,
+      fr: String,
+      uk: String,
+      en: String,
+      je: String
+    }
+  },
+
   cssClass: String,
   icon: {type: String, required: true, default: 'grave'},
   postsCount: {type: Number, required: true, default: 0},
