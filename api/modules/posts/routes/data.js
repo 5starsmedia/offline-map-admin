@@ -48,7 +48,7 @@ var addPostForCategory = function(app, category, item, result, next) {
                 }
                 pageItem.content.push({
                     type: "card-showcase",
-                    html: '<strong>Адрес</strong>: ' + page.address
+                    html: (page.address) ? '<strong>Адрес</strong>: ' + page.address : ''
                 });
             }
 
