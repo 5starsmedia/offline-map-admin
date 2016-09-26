@@ -172,7 +172,7 @@ gulp.task('usemin', ['build-persistent', 'concat'], function () {
       css: [minifyCss(), 'concat'],
       html: [minifyHtml({empty: true})],
       js: [uglify(), rev()],
-      vendorsjs: [uglify(), rev()]
+      vendorsjs: [rev()]
     }))
     .pipe(gulp.dest('build/'));
 });
