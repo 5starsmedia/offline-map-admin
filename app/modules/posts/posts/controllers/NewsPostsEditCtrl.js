@@ -2,7 +2,7 @@ export default
 class NewsPostsEditCtrl {
 
   /*@ngInject*/
-  constructor($scope, $state, $filter, $stateParams, post, notify, NewsCategoryModel, $http, $sce, postType, uiGmapIsReady) {
+  constructor($scope, $state, $filter, NewsRegionModel, post, notify, NewsCategoryModel, $http, $sce, postType, uiGmapIsReady) {
 
     var markerId = 1;
 
@@ -15,6 +15,9 @@ class NewsPostsEditCtrl {
 
     NewsCategoryModel.getTree({ postType: postType, page: 1, perPage: 100 }, (data) => {
       $scope.categories = data;
+    });
+    NewsRegionModel.getTree({ page: 1, perPage: 100 }, (data) => {
+      $scope.regions = data;
     });
 
     $scope.control = {};

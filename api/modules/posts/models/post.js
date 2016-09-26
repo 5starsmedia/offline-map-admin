@@ -177,6 +177,12 @@ var schema = new mongoose.Schema({
     alias: String,
     parentAlias: String
   },
+  region: {
+    _id: mongoose.Schema.Types.ObjectId,
+    title: String,
+    alias: String,
+    parentAlias: String
+  },
   coverFile: {
     _id: mongoose.Schema.Types.ObjectId,
     title: String
