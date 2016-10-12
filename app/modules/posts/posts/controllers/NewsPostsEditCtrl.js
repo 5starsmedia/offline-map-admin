@@ -20,6 +20,132 @@ class NewsPostsEditCtrl {
       $scope.regions = data;
     });
 
+    /*
+     db.posts.find({ _id: ObjectId('574d9e7a9286b438235f00c5') });
+
+     db.collection('posts').update(
+     { _id: ObjectId('574d9e7a9286b438235f00c5') },
+     {
+     $set: { "cuisine": "American (New)" },
+     $currentDate: { "lastModified": true }
+     }, function(err, results) {
+     console.log(results);
+     callback();
+
+     });
+
+     db.posts.find({ }).forEach(function (content) {
+     var region = {};
+
+     content.address = content.address || '';
+      var regTitle = 'Винницкая о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c75e37ded9480c61deab'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Волынская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c75337ded9480c61dea1'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Днепропетровская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c74837ded9480c61de97'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Донецкая о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c73d37ded9480c61de8d'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Житомирская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c72f37ded9480c61de83'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Закарпатская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c71c37ded9480c61de78'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Запорожская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c71937ded9480c61de6f'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Ивано-Франковская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c70d37ded9480c61de60'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Киевская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c70237ded9480c61de56'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Кировоградская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6f737ded9480c61de4c'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Луганская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6ec37ded9480c61de42'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Львовская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6e237ded9480c61de38'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Николаевская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6d837ded9480c61de2e'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Одесская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6ce37ded9480c61de24'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Полтавская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6c037ded9480c61de1a'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Ровненская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6b437ded9480c61de10'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Сумская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c6a637ded9480c61de06'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Тернопольская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c69737ded9480c61ddfc'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Харьковская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c68c37ded9480c61ddf2'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Хмельницкая о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c68037ded9480c61dde8'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Черкасская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c67537ded9480c61ddde'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Черниговская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c66a37ded9480c61ddd4'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Черновицкая о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c65e37ded9480c61ddca'), title: regTitle + 'бласть' };
+     }
+     regTitle = 'Херсонская о';
+     if (content.address.indexOf(regTitle) !== -1 || (content.category2 && content.category2.title.indexOf(regTitle) !== -1)) {
+      region = { _id: ObjectId('57e8c64d37ded9480c61ddbf'), title: regTitle + 'бласть' };
+     }
+     db.posts.update({ _id: content._id }, { $set: { 'region': region } });
+     printjson(region);
+
+     });
+
+     db.posts.find({ $and: [{'category2.title': { $exists: false }}, {'category2._id': { $exists: true }}] }).forEach(function (content) {
+     db.categories.find({ _id: content.category2._id }).forEach(function (content2) {
+     db.posts.update({ _id: content._id }, { $set: { 'category2.title': content2.title } });
+     });
+     });
+     */
+
     $scope.control = {};
     uiGmapIsReady.promise().then(function (maps) {
       if($scope.control.refresh) $scope.control.refresh();

@@ -29,6 +29,8 @@ var addPostForCategory = function(app, category, item, result, next) {
             var pageItem = {
                 id: page._id,
                 alias: 'id-' + page._id,
+                regionId: page.region._id,
+                regionTitle: page.region.title,
                 title: page.title,
                 phone: page.phone,
                 website: page.website,
@@ -137,6 +139,11 @@ router.get('/', function (req, res, next) {
             var params = { 'site._id': req.site._id, removed: {$exists: false}, path: { $ne: '' } };
 
             req.app.models.categories.find(params, next)
+        },
+        'regions': function (next) {
+            var params = { 'site._id': req.site._id, removed: {$exists: false}, path: { $ne: '' } };
+
+            req.app.models.regions.find(params, next)
         }
     }, function (err, data) {
         if (err) { return next(err); }
@@ -190,8 +197,14 @@ router.get('/', function (req, res, next) {
                 }
                 return item;
             });
+            var regions = _.map(data.regions, function(item) {
+                return {
+                    id: item.id,
+                    translates: item.translates
+                };
+            });
             fillNearPlaces(result);
-            res.json(result);
+            res.json({ places: result, regions: regions });
         });
     });
 
