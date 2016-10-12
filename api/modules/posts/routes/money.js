@@ -25,9 +25,10 @@ router.get('/', function (req, res, next) {
         method: 'GET'
     };
 
-    var reqA = http.request(options, function(res) {
-        res.setEncoding('utf8');
-        res.on('data', function (data) {
+    var reqA = http.request(options, function(resA) {
+        console.info('res')
+        resA.setEncoding('utf8');
+        resA.on('data', function (data) {
             res.json(data);
         });
     });
