@@ -158,7 +158,8 @@ router.get('/', function (req, res, next) {
                 title: category.title,
                 alias: 'id-' + category._id,
                 id: category._id,
-                translates: category.translates
+                translates: category.translates,
+                parentId: category.parentId
             };
             if (category.title == 'Обзор') {
                 item.alias = 'browse';
