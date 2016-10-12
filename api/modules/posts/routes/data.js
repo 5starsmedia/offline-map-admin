@@ -200,7 +200,7 @@ router.get('/', function (req, res, next) {
             });
             var regions = _.map(data.regions, function(item) {
                 return {
-                    id: item.id,
+                    id: item._id,
                     translates: item.translates
                 };
             });
